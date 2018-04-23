@@ -8,25 +8,24 @@ int joyVal;
 int joyX;
 
 void setup() {
+  // Attach servos on pins 3, 5
+  servo1.attach(3);
   // Start the I2C Bus as Slave on address 9
-  Wire.begin(9); 
+  Wire.begin(9);
   // Attach a function to trigger when something is received.
   Wire.onReceive(receiveEvent);
 }
 void receiveEvent(int bytes) {
   joyX = Wire.read();    // read one character from the I2C
-  
-  // Attach servos on pins 3, 5
-  servo1.attach(3);
 }
 
 void loop() {
-  joyVal = analogRead(joyX);
-  joyVal = map (joyVal, 0, 1023, 0, 180); // Servo value between 0-180
+  //joyVal = analogRead(joyX);
+  joyVal = map (joyX, 0, 1023, 0, 180); // Servo value between 0-180
   servo1.write(joyVal); // Set the servo's position according to the joystick value
   delay(15);
   
-  Serial.print (joyX);
+  Serial.print(joyX);
 }
 
 

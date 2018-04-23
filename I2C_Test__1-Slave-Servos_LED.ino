@@ -25,6 +25,8 @@ void loop() {
   joyVal = map (joyVal, 0, 1023, 0, 180); // Servo value between 0-180
   servo1.write(joyVal); // Set the servo's position according to the joystick value
   delay(15);
+  
+  Serial.print (joyX);
 }
 
 

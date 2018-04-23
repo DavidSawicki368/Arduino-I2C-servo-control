@@ -13,11 +13,14 @@ void setup() {
 
 void loop() {
 
-
+  
+  
   Wire.beginTransmission(9); // transmit to device #9
   Wire.write(joyX);        // sends joyVal
   Wire.endTransmission();    // stop transmitting
   delay(15);
-}
 
+Serial.print (joyX);
+  
+}
 

@@ -8,19 +8,17 @@ int joyX = A0; // Define joystick pins (Analog)
 void setup() {
   // Start the I2C Bus as Master
   Wire.begin(); 
-
+  Serial.print("Hello, David!");
 }
 
 void loop() {
-
-  
-  
+  // Read the joystick here
+  joyVal = analog.read(joyX);
   Wire.beginTransmission(9); // transmit to device #9
-  Wire.write(joyX);        // sends joyVal
+  Wire.write(joyVal);        // sends joyVal
   Wire.endTransmission();    // stop transmitting
   delay(15);
 
-Serial.print (joyX);
-  
+  Serial.print (joyVal);  
 }
 

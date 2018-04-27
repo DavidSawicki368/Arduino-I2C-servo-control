@@ -15,7 +15,7 @@ void loop() {
   // Read the joystick here
   joyVal = analog.read(joyX);
   Wire.beginTransmission(9); // transmit to device #9
-  Wire.write(joyVal);        // sends joyVal
+  Wire.write(map(joyVal, 0, 1023, 0, 180);        // sends joyVal
   Wire.endTransmission();    // stop transmitting
   delay(15);
 

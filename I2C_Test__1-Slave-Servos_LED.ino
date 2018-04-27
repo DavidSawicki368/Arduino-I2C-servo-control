@@ -5,7 +5,6 @@ Servo servo1;
 
 // Variable to read the values from the analog pins
 int joyVal;
-int joyX;
 
 void setup() {
   // Attach servos on pins 3, 5
@@ -16,16 +15,14 @@ void setup() {
   Wire.onReceive(receiveEvent);
 }
 void receiveEvent(int bytes) {
-  joyX = Wire.read();    // read one character from the I2C
+  joyVal = Wire.read();    // read one character from the I2C
+  joyVal = map (joyVal, 0, 1023, 0, 180); // Servo value between 0-180
+  servo1.write(joyVal); // Set the servo's position according to the joystick value
+  delay(15);
 }
 
 void loop() {
-  //joyVal = analogRead(joyX);
-  joyVal = map (joyX, 0, 1023, 0, 180); // Servo value between 0-180
-  servo1.write(joyVal); // Set the servo's position according to the joystick value
-  delay(15);
-  
-  Serial.print(joyX);
+
 }
 
 
